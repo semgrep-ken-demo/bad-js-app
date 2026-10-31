@@ -1,4 +1,4 @@
-FROM node:18 as installer
+FROM node:22.23.4 as installer
 COPY . /juice-shop
 WORKDIR /juice-shop
 RUN npm i -g typescript ts-node
@@ -12,7 +12,7 @@ RUN mkdir logs && \
     chgrp -R 0 ftp/ frontend/dist/ logs/ data/ i18n/ && \
     chmod -R g=u ftp/ frontend/dist/ logs/ data/ i18n/
 
-FROM gcr.io/distroless/nodejs:18
+FROM gcr.io/distroless/nodejs:22
 ARG BUILD_DATE
 ARG VCS_REF
 LABEL maintainer="Bjoern Kimminich <bjoern.kimminich@owasp.org>" \
